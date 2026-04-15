@@ -74,10 +74,30 @@
             50% { opacity: 0.7; }
         }
         .animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+	/* FLOAT ANIMATION */
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+.float-animate {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* CURSOR GLOW */
+#cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,210,255,0.15), transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
     </style>
 </head>
 <body class="antialiased">
-
+	<div id="cursor-glow"></div>
     <div class="fixed inset-0 z-[-1]">
         <div class="absolute inset-0 bg-grid"></div>
         <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 blur-[120px] rounded-full"></div>
@@ -85,21 +105,40 @@
     </div>
 
     <nav class="fixed w-full z-50 bg-slate-950/50 backdrop-blur-lg border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
-            <div class="flex items-center">
-                <a href="#top">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
+        
+        <div class="flex items-center">
+            <a href="#top">
                 <img src="jml.png" alt="Logo" class="h-20 w-auto">
-                </a>
-            </div>
-            <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
-                <a href="#about" class="hover:text-cyan-400 transition-colors">Profile</a>
-                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
-                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-                <a href="#credentials" class="hover:text-cyan-400 transition-colors">Certificates</a>
-                <a href="#contact" class="text-cyan-400 border border-cyan-400/30 px-4 py-1.5 rounded hover:bg-cyan-400/10 transition-all">Connect</a>
-            </div>
+            </a>
         </div>
-    </nav>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            <a href="#about" class="hover:text-cyan-400 transition-colors">Profile</a>
+            <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+            <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+            <a href="#credentials" class="hover:text-cyan-400 transition-colors">Certificates</a>
+            <a href="#contact" class="text-cyan-400 border border-cyan-400/30 px-4 py-1.5 rounded hover:bg-cyan-400/10 transition-all">Connect</a>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="menu-btn" class="md:hidden text-cyan-400 text-2xl">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="max-h-0 overflow-hidden transition-all duration-500 md:hidden px-6 bg-slate-950/95 backdrop-blur-lg">
+        <div class="flex flex-col space-y-4 py-4 text-sm uppercase tracking-widest text-slate-300">
+            <a href="#about">Profile</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#credentials">Certificates</a>
+            <a href="#contact" class="text-cyan-400 border px-4 py-2 text-center">Connect</a>
+        </div>
+    </div>
+</nav>
 
     <section class="relative min-h-screen flex items-center pt-20">
         <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -124,7 +163,7 @@
                 </div>
             </div>
             
-            <div class="hidden lg:block relative" data-aos="zoom-in" data-aos-duration="1200">
+            <div class="hidden lg:block relative float-animate" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="relative z-10">
                     <div class="w-full h-[450px] rounded-sm border border-white/10 glass-card p-10 space-y-8 flex flex-col justify-center">
                         <div class="space-y-4 mono text-sm text-cyan-400/80">
@@ -440,7 +479,7 @@
                 <div class="flex space-x-6 text-slate-500 text-xl">
                 
  <div class="relative group inline-block">
-  <a href="https://www.linkedin.com/in/jaysonluseco/" class="hover:text-cyan-400 transition-colors">
+  <a href="https://www.linkedin.com/in/jaysonluseco/" target="_blank" class="hover:text-cyan-400 transition-colors">
         <div class="text-slate-500 mt-6 mb-6 text-2xl">
             <i class="fab fa-linkedin"></i>
         </div>
@@ -452,7 +491,7 @@
 </div>                   
 
 <div class="relative group inline-block">
-  <a href="https://www.credly.com/users/jysn-lsc" class="hover:text-cyan-400 transition-colors">
+  <a href="https://www.credly.com/users/jysn-lsc" target="_blank" class="hover:text-cyan-400 transition-colors">
         <div class="text-slate-500 mt-6 mb-6 text-2xl">
             <i class="fa-solid fa-certificate"></i>
         </div>
@@ -464,7 +503,7 @@
 </div>
 
 <div class="relative group inline-block">
-  <a href="viber://chat?number=09972515740" class="hover:text-cyan-400 transition-colors">
+  <a href="viber://chat?number=09972515740" target="_blank" class="hover:text-cyan-400 transition-colors">
         <div class="text-slate-500 mt-6 mb-6 text-2xl">
             <i class="fa-brands fa-viber"></i>
         </div>
@@ -489,5 +528,60 @@
     <script>
         AOS.init({ once: true, duration: 800, offset: 100 });
     </script>
+<div id="previewModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
+    <p class="absolute top-40 text-white text-sm mono opacity-80">
+        Click Anywhere to Close
+    </p>
+    <img id="previewImg" class="max-w-[80%] max-h-[80%] rounded shadow-2xl">
+</div>
+<script>
+AOS.init({ once: true, duration: 800, offset: 100 });
+
+/* MOBILE MENU */
+const btn = document.getElementById("menu-btn");
+const menu = document.getElementById("mobile-menu");
+
+btn.addEventListener("click", () => {
+    menu.classList.toggle("max-h-0");
+    menu.classList.toggle("max-h-[300px]");
+
+    const icon = btn.querySelector("i");
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-times");
+});
+
+/* CLOSE MENU ON CLICK */
+document.querySelectorAll("#mobile-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        menu.classList.add("max-h-0");
+        menu.classList.remove("max-h-[300px]");
+    });
+});
+
+/* CURSOR GLOW */
+document.addEventListener("mousemove", e => {
+    const glow = document.getElementById("cursor-glow");
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
+
+/* NAV SCROLL EFFECT */
+window.addEventListener("scroll", () => {
+    const nav = document.querySelector("nav");
+    nav.classList.toggle("bg-slate-950", window.scrollY > 50);
+});
+
+/* IMAGE PREVIEW */
+function openPreview(src) {
+    const modal = document.getElementById("previewModal");
+    document.getElementById("previewImg").src = src;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+}
+
+document.getElementById("previewModal").onclick = function () {
+    this.classList.add("hidden");
+};
+</script>
 </body>
 </html>
