@@ -296,19 +296,6 @@
                     </p>
                 <img id="previewImg" class="max-w-[50%] max-h-[50%] rounded shadow-2xl">
             </div>
-			<script>
-            function openPreview(element) {
-                const img = element.querySelector("img");
-                document.getElementById("previewImg").src = img.src;
-                document.getElementById("previewModal").classList.remove("hidden");
-                document.getElementById("previewModal").classList.add("flex");
-            }
-
-                document.getElementById("previewModal").onclick = function () {
-                    this.classList.add("hidden");
-                    this.classList.remove("flex");
-            };
-            </script>
 
             <script>
             function openPreview(element) {
@@ -547,6 +534,9 @@
     </p>
     <img id="previewImg" class="max-w-[80%] max-h-[80%] rounded shadow-2xl">
 </div>
+
+
+
 <script>
 AOS.init({ once: true, duration: 800, offset: 100 });
 
@@ -585,16 +575,20 @@ window.addEventListener("scroll", () => {
 });
 
 /* IMAGE PREVIEW */
-function openPreview(src) {
+function openPreview(element) {
+    const img = element.querySelector("img");
     const modal = document.getElementById("previewModal");
-    document.getElementById("previewImg").src = src;
+    const previewImg = document.getElementById("previewImg");
+
+    previewImg.src = img.src;
     modal.classList.remove("hidden");
     modal.classList.add("flex");
 }
 
-document.getElementById("previewModal").onclick = function () {
+/* CLOSE MODAL */
+document.getElementById("previewModal").addEventListener("click", function () {
     this.classList.add("hidden");
-};
-</script>
+    this.classList.remove("flex");
+});</script>
 </body>
 </html>
