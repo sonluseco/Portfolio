@@ -94,6 +94,10 @@
     transform: translate(-50%, -50%);
     z-index: 0;
 }
+		html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
     </style>
 </head>
 <body class="antialiased">
@@ -105,16 +109,17 @@
     </div>
 
     <nav class="fixed w-full z-50 bg-slate-950/50 backdrop-blur-lg border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center h-20">
-        
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center h-16">
+
+        <!-- LOGO (FIXED RESPONSIVE SIZE) -->
         <div class="flex items-center">
             <a href="#top">
-                <img src="jml.png" alt="Logo" class="h-20 w-auto">
+                <img src="jml.png" alt="Logo" class="h-12 sm:h-16 w-auto">
             </a>
         </div>
 
         <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
             <a href="#about" class="hover:text-cyan-400 transition-colors">Profile</a>
             <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
             <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
@@ -123,7 +128,7 @@
         </div>
 
         <!-- Hamburger -->
-        <button id="menu-btn" class="md:hidden text-cyan-400 text-2xl">
+        <button id="menu-btn" class="md:hidden text-cyan-400 text-2xl z-50">
             <i class="fas fa-bars"></i>
         </button>
     </div>
