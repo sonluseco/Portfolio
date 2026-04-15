@@ -296,6 +296,19 @@
                     </p>
                 <img id="previewImg" class="max-w-[50%] max-h-[50%] rounded shadow-2xl">
             </div>
+			<script>
+            function openPreview(element) {
+                const img = element.querySelector("img");
+                document.getElementById("previewImg").src = img.src;
+                document.getElementById("previewModal").classList.remove("hidden");
+                document.getElementById("previewModal").classList.add("flex");
+            }
+
+                document.getElementById("previewModal").onclick = function () {
+                    this.classList.add("hidden");
+                    this.classList.remove("flex");
+            };
+            </script>
 
             <script>
             function openPreview(element) {
